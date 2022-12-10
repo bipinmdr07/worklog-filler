@@ -1,0 +1,15 @@
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.mr-8 {
+  margin-right: 8px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.p-fixed {
+  position: fixed;
+}
