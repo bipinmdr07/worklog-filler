@@ -1,12 +1,11 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+This is a chrome extension developed using [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+This project is used for auto filling the worklogs at Leapfrog Technology using my own TODO list that I have maintained in emacs org-mode accroding to date.
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-pnpm dev
-# or
 npm run dev
 ```
 
@@ -21,8 +20,6 @@ For further guidance, [visit our Documentation](https://docs.plasmo.com/)
 Run the following:
 
 ```bash
-pnpm build
-# or
 npm run build
 ```
 
