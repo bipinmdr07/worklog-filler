@@ -9,6 +9,9 @@
 # testing
 /coverage
 
+# ts server logs
+.log
+
 #cache
 .turbo
 .next
