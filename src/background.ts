@@ -10,9 +10,7 @@ const defaultWorkLog = {
 
 const fetchData = async () => {
   const url = 'file:///home/lf-00002065/Dropbox/org/todo.org'
-  const data = await fetch(url, {
-    headers: { responseType: 'text' }
-  })
+  const data = await fetch(url)
 
   const fileContent = await data.text()
   const orgJson = baseParse(fileContent)
