@@ -27,7 +27,7 @@
     "typescript": "4.9.3"
   },
   "manifest": {
-    "host_permissions": ["https://*/*", "http://*/*"],
+    "host_permissions": ["https://*/*", "http://*/*", "file:///*/*"],
     "permissions": ["background", "nativeMessaging"]
   }
 }

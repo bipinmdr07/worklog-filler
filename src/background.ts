@@ -9,7 +9,8 @@ const defaultWorkLog = {
 }
 
 const fetchData = async () => {
-  const data = await fetch('http://localhost:8488/todo.org', {
+  const url = 'file:///home/lf-00002065/Dropbox/org/todo.org'
+  const data = await fetch(url, {
     headers: { responseType: 'text' }
   })
 
