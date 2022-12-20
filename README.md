@@ -1,6 +1,20 @@
 This is a chrome extension developed using [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
 This project is used for auto filling the worklogs at Leapfrog Technology using my own TODO list that I have maintained in emacs org-mode accroding to date.
 
+**My todo list format** grouped by date
+
+<a href="https://i.imgur.com/jtqoVTn.png">
+<img src="https://i.imgur.com/jtqoVTn.png" />
+</a>
+
+The **LOGBOOK** is provided by the org mode _clock-in_ and _clock-out_ for tracking the time I worked on that particular task.
+
+## Demo
+
+1. Auto Filling the worklog.
+
+2. Copying the list of tasks ready for stand-up tasks that needs to be updated on slack channel (For some projects)
+
 ## Getting Started
 
 First, run the development server:
