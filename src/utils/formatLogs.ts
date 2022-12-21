@@ -1,5 +1,15 @@
 import { formatOrgLogs, formattedTaskType } from './formatter'
 
+const populateTaggedTask = (tagObj: any, task: formattedTaskType) => {
+  const { content, times = [] } = task
+
+  tagObj.tasks.push(content)
+  tagObj.time += times.reduce(
+    (acc: number, time: number) => acc + +(time / 60.0).toFixed(2),
+    0
+  )
+}
+
 /**
  * Regroup the tasks inside each date as `meeting`, `coding` and `others`
  *
@@ -44,28 +54,16 @@ const regroupFormattedTasksByTag = (
     const others = { tasks: [], time: 0 }
 
     tasks.forEach((task: any) => {
-      const { tag, content, times = [] } = task
+      const { tag } = task
       switch (tag) {
         case 'MEETING':
-          meeting.tasks.push(content)
-          meeting.time += times.reduce(
-            (acc: number, time: number) => acc + +(time / 60.0).toFixed(2),
-            0
-          )
+          populateTaggedTask(meeting, task)
           break
         case 'CODING':
-          coding.tasks.push(content)
-          coding.time += times.reduce(
-            (acc: number, time: number) => acc + +(time / 60.0).toFixed(2),
-            0
-          )
+          populateTaggedTask(coding, task)
           break
         default:
-          others.tasks.push(content)
-          others.time += times.reduce(
-            (acc: number, time: number) => acc + +(time / 60.0).toFixed(2),
-            0
-          )
+          populateTaggedTask(others, task)
           break
       }
     })
