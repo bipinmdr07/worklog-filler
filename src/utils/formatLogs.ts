@@ -1,4 +1,4 @@
-import { formatOrgLogs, formattedTaskType } from './formatter'
+import { formatOrgLogs, formatTxtLogs, formattedTaskType } from './formatter'
 
 const populateTaggedTask = (tagObj: any, task: formattedTaskType) => {
   const { content, times = [] } = task
@@ -85,5 +85,12 @@ export const getFormattedOrgLogs = (orgParsedLog: any) => {
   const allTasks = orgParsedLog.children
 
   const formattedTasks = formatOrgLogs(allTasks)
+  return regroupFormattedTasksByTag(formattedTasks)
+}
+
+export const getFormattedTxtLogs = (data: string) => {
+  const allTasks = data.split('\n') // splitting by new line
+
+  const formattedTasks = formatTxtLogs(allTasks)
   return regroupFormattedTasksByTag(formattedTasks)
 }
