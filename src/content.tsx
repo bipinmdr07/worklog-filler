@@ -4,6 +4,7 @@ import type { PlasmoContentScript, PlasmoGetStyle } from "plasmo"
 import dayjs from 'dayjs'
 import { fireEvents } from '~utils/fireEvents'
 import { DATE_FORMAT, validTags } from '~constants/constant'
+import { useStorage } from '@plasmohq/storage/hook'
 
 import contentStyle from 'data-text:./style.css';
 
@@ -20,9 +21,10 @@ export const getStyle: PlasmoGetStyle = () => {
 const WorklogFiller = () => {
   const today = dayjs().format(DATE_FORMAT)
   const [date, setDate] = useState(today)
+  const [fileURL] = useStorage('fileURL')
 
   const handleCopyToClipboard = () => {
-    chrome.runtime.sendMessage({ action: 'refetch', date }, (data) => {
+    chrome.runtime.sendMessage({ action: 'refetch', date, fileURL }, (data) => {
       const tasks = Object.values(data)?.reduce((acc: any, { tasks }) => {
         return [...acc, ...tasks]
       }, []) as string[] || []
@@ -34,7 +36,7 @@ const WorklogFiller = () => {
 
   // NOTE: This class names might change over time.
   const handleAutoFillClick = () => {
-    chrome.runtime.sendMessage({ action: 'refetch', date }, (data) => {
+    chrome.runtime.sendMessage({ action: 'refetch', date, fileURL }, (data) => {
       const elem = document.getElementsByClassName('worklog__timesheet-view') // NOTE: className
       // only for one project
       const elemOfInterest = elem[0]
