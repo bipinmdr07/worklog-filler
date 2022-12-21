@@ -6,6 +6,11 @@ const OptionsMenu = () => {
   const [fileURL, setFileURL] = useStorage<any>('fileURL')
   const [text, setText] = useState('');
 
+  const handleButtonClick = () => {
+    setFileURL(text)
+    window.location.href = 'https://vyaguta.lftechnology.com/attendance/self/all'
+  }
+
   return (
     <div style={{ padding: 20 }}>
       <h1>Configuration</h1>
@@ -17,7 +22,7 @@ const OptionsMenu = () => {
           Press <b>Ctrl + O</b> in the browser, select your todo file and copy and paste the link from address bar to above input field.
         </p>
       </div>
-      <button onClick={() => setFileURL(text)}>Save</button>
+      <button onClick={handleButtonClick}>Save</button>
     </div>
   )
 }
