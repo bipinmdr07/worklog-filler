@@ -1,6 +1,6 @@
 import { baseParse } from 'org-file-parser-with-js'
 
-import { getFormattedOrgLogs } from '~utils/formatOrgParsedLogs'
+import { getFormattedOrgLogs } from '~utils/formatLogs'
 
 const defaultWorkLog = {
   meeting: { tasks: ['- N/A'], time: 0 },
