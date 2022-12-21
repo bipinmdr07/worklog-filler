@@ -1,6 +1,6 @@
 import { baseParse } from 'org-file-parser-with-js'
 
-import { getFormattedOrgLogs } from '~utils/formatLogs'
+import { getFormattedOrgLogs, getFormattedTxtLogs } from '~utils/formatLogs'
 
 const defaultWorkLog = {
   meeting: { tasks: ['- N/A'], time: 0 },
@@ -20,8 +20,7 @@ const fetchData = async (fileURL: string) => {
       const orgJson = baseParse(fileContent)
       return getFormattedOrgLogs(orgJson)
     } else if (fileExtension === 'txt') {
-      // TODO: Implement Formatter for txt file type.
-      // return getFormattedTxtLogs(fileContent)
+      return getFormattedTxtLogs(fileContent)
     }
 
     throw new Error('Invalid File provided')
@@ -34,7 +33,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'refetch') {
     ;(async () => {
       const allResp = await fetchData(request.fileURL)
-      console.log({ allResp })
       sendResponse(allResp[request.date] || defaultWorkLog)
     })()
 
