@@ -37,7 +37,7 @@ import { formatOrgLogs, formattedTaskType } from './formatter'
 const regroupFormattedTasksByTag = (
   formattedTasks: Record<string, formattedTaskType[]>
 ) => {
-  Object.keys(formattedTasks).reduce((acc, date) => {
+  const regroupedResult = Object.keys(formattedTasks).reduce((acc, date) => {
     const tasks: formattedTaskType[] = formattedTasks?.[date]
     const meeting = { tasks: [], time: 0 }
     const coding = { tasks: [], time: 0 }
@@ -79,6 +79,8 @@ const regroupFormattedTasksByTag = (
       }
     }
   }, {})
+
+  return regroupedResult
 }
 
 export const getFormattedOrgLogs = (orgParsedLog: any) => {
