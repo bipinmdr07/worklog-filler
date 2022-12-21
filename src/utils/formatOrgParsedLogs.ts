@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 import { DATE_FORMAT } from '~constants/constant'
 import { ORG_TIME_STAMP } from '~constants/regex'
 
-export const getFormattedLog = (orgParsedLog: any) => {
+export const getFormattedOrgLogs = (orgParsedLog: any) => {
   const allTasks = orgParsedLog.children
 
   // only take the tasks that have time stamp as the h1 level heading
