@@ -11,6 +11,7 @@
     "package": "plasmo package"
   },
   "dependencies": {
+    "@plasmohq/storage": "^0.13.1",
     "dayjs": "^1.11.7",
     "org-file-parser-with-js": "^0.1.58",
     "plasmo": "0.59.3",
@@ -27,7 +28,14 @@
     "typescript": "4.9.3"
   },
   "manifest": {
-    "host_permissions": ["https://*/*", "http://*/*", "file:///*/*"],
-    "permissions": ["background", "nativeMessaging"]
+    "host_permissions": [
+      "https://*/*",
+      "http://*/*",
+      "file:///*/*"
+    ],
+    "permissions": [
+      "background",
+      "nativeMessaging"
+    ]
   }
 }
