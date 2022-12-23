@@ -21,13 +21,13 @@ The **LOGBOOK** is provided by the org mode _clock-in_ and _clock-out_ for track
 
 ```text
 # 2022-12-20
-- Work on adding text file :CODING: // adding tag with :TEXT: format
-- Add todo list :OTHER: // everything without tag will automatically treated as other
+- Work on adding a text file :CODING: // adding tag with :TEXT: format
+- Add todo list :OTHER: // everything without a tag will automatically be treated as other
 - Meeting with client :MEETING:
 
 # 2022-12-21
 - Work on adding org file :CODING: // adding tag with :TEXT: format
-- Add todo list for my party :OTHER: // everything without tag will automatically treated as other
+- Add todo list for my party :OTHER: // everything without a tag will automatically be treated as other
 - Meeting with the client :MEETING:
 ```
 

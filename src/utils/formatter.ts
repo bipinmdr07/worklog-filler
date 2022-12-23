@@ -1,7 +1,12 @@
 import dayjs from 'dayjs'
 
 import { DATE_FORMAT } from '~constants/constant'
-import { ORG_TIME_STAMP, TODO_TAG, TXT_TIME_STAMP } from '~constants/regex'
+import {
+  LIST_ITEM_STARTER,
+  ORG_TIME_STAMP,
+  TODO_TAG,
+  TXT_TIME_STAMP
+} from '~constants/regex'
 
 type tagType = 'MEETING' | 'CODING' | 'OTHER'
 
@@ -41,7 +46,7 @@ export type formattedTaskType = {
  * }
  */
 export const formatOrgLogs = (allTasks: any[]) => {
-  let obj: Record<string, formattedTaskType[]> = {}
+  let record: Record<string, formattedTaskType[]> = {}
   let currentHeading: string = ''
 
   allTasks.forEach((task: any) => {
@@ -49,7 +54,7 @@ export const formatOrgLogs = (allTasks: any[]) => {
 
     if (level === 1 && ORG_TIME_STAMP.test(content)) {
       currentHeading = dayjs(new Date(content)).format(DATE_FORMAT)
-      if (!obj[currentHeading]) obj[currentHeading] = []
+      if (!record[currentHeading]) record[currentHeading] = []
     } else if (level === 2 && currentHeading && content) {
       const taskObj: formattedTaskType = {
         content: `- ${content.replace(/^\[.\]\s/, '')}`, // removing the checkbox from title, [X] [ ] [-] [?]
@@ -70,26 +75,30 @@ export const formatOrgLogs = (allTasks: any[]) => {
           )
       }
 
-      obj[currentHeading].push(taskObj)
+      record[currentHeading].push(taskObj)
     }
   })
 
-  return obj
+  return record
 }
 
 export const formatTxtLogs = (allTasks: string[]) => {
-  let obj: Record<string, formattedTaskType[]> = {}
+  let record: Record<string, formattedTaskType[]> = {}
   let currentHeading: string = ''
 
   allTasks.forEach((task: string) => {
     const trimmedTask = task.trim()
 
     // check if line starts with `#` followed by date
-    if (trimmedTask[0] === '#' && TXT_TIME_STAMP.test(task)) {
+    if (trimmedTask.startsWith('#') && TXT_TIME_STAMP.test(task)) {
       currentHeading = trimmedTask.replace('# ', '')
-      if (!obj[currentHeading]) obj[currentHeading] = []
-      // check if tasks starts with `-` character ignore if line don't start with -
-    } else if (currentHeading && task.length && /^\-/.test(trimmedTask)) {
+      if (!record[currentHeading]) record[currentHeading] = []
+      // check if tasks start with `-` character ignore if line doesn't start with -
+    } else if (
+      currentHeading &&
+      task.length &&
+      LIST_ITEM_STARTER.test(trimmedTask)
+    ) {
       const taskObj: formattedTaskType = {
         content: trimmedTask.replace(TODO_TAG, ''), // removing the tags from content
         tag: (TODO_TAG.exec(trimmedTask)?.[0] || '').replace(
@@ -98,9 +107,9 @@ export const formatTxtLogs = (allTasks: string[]) => {
         ) as tagType // removing the extra `:` character from tag
       }
 
-      obj[currentHeading].push(taskObj)
+      record[currentHeading].push(taskObj)
     }
   })
 
-  return obj
+  return record
 }
