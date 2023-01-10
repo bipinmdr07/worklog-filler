@@ -1,13 +1,16 @@
 import { formatOrgLogs, formatTxtLogs, formattedTaskType } from './formatter'
+import { roundMins } from './time'
 
 const populateTaggedTask = (tagObj: any, task: formattedTaskType) => {
   const { content, times = [] } = task
 
-  tagObj.tasks.push(content)
-  tagObj.time += times.reduce(
-    (acc: number, time: number) => acc + +(time / 60.0).toFixed(2),
+  const totalTimeInMins = times.reduce(
+    (acc: number, time: number) => acc + time,
     0
   )
+
+  tagObj.tasks.push(content)
+  tagObj.time = +(roundMins(totalTimeInMins) / 60.0).toFixed(2)
 }
 
 /**
