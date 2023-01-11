@@ -10,7 +10,7 @@ const populateTaggedTask = (tagObj: any, task: formattedTaskType) => {
   )
 
   tagObj.tasks.push(content)
-  tagObj.time = +(roundMins(totalTimeInMins) / 60.0).toFixed(2)
+  tagObj.time += +(roundMins(totalTimeInMins) / 60.0).toFixed(2) // add time to time property present in tagObj.
 }
 
 /**
