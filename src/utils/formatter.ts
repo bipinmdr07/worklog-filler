@@ -50,7 +50,22 @@ export const formatOrgLogs = (allTasks: any[]) => {
   let currentHeading: string = ''
 
   allTasks.forEach((task: any) => {
-    const { title: { content = '' } = {}, level, properties, tags } = task
+    const {
+      title: { content: cont = '', children = [] } = {},
+      level,
+      properties,
+      tags
+    } = task
+
+    let content = ''
+
+    switch (children.length) {
+      case 2:
+        content = children[1].content?.trim()
+        break
+      default:
+        content = cont?.trim()
+    }
 
     if (level === 1 && ORG_TIME_STAMP.test(content)) {
       currentHeading = dayjs(new Date(content)).format(DATE_FORMAT)
