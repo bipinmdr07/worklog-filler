@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 
+import copy from 'copy-to-clipboard'
 import type { PlasmoContentScript, PlasmoGetStyle } from "plasmo"
+
 import dayjs from 'dayjs'
 import { fireEvents } from '~utils/fireEvents'
 import { DATE_FORMAT, validTags } from '~constants/constant'
@@ -29,8 +31,7 @@ const WorklogFiller = () => {
         return [...acc, ...tasks]
       }, []) as string[] || []
 
-      navigator.clipboard.writeText(tasks.map((txt) => txt.replace(/^\-/, ':point_right:')).join("\n"))
-      alert('Tasks copied to clipboard')
+      copy(tasks.map((txt) => txt.replace(/^\-/, ':point_right:')).join("\n"))
     })
   }
 
