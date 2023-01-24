@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@plasmohq/storage": "^0.13.1",
+    "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.7",
     "org-file-parser-with-js": "^0.1.58",
     "plasmo": "0.59.3",
