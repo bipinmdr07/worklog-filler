@@ -31,7 +31,7 @@ const WorklogFiller = () => {
         return [...acc, ...tasks]
       }, []) as string[] || []
 
-      copy(tasks.map((txt) => txt.replace(/^\-/, ':point_right:')).join("\n"))
+      copy(tasks.map((txt) => txt.replace(/^\-/, '•')).join("\n"))
     })
   }
 
